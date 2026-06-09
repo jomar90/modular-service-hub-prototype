@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class CustomerSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(CustomerSeeder::class);
+        Customer::factory()->count(50)->create();
     }
 }
