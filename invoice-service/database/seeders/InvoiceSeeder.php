@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Invoice;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class InvoiceSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(InvoiceSeeder::class);
+        Invoice::factory()->count(40)->create();
     }
 }
