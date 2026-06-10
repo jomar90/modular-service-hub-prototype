@@ -28,7 +28,7 @@ class CustomerController extends Controller
             });
         }
 
-        return CustomerResource::collection($query->orderBy('name')->paginate(15));
+        return CustomerResource::collection($query->orderBy('name')->paginate(15)->withQueryString());
     }
 
     public function show(Customer $customer): CustomerResource

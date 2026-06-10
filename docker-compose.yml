@@ -1,0 +1,56 @@
+services:
+
+  customer-service:
+    build:
+      context: ./customer-service
+    ports:
+      - "8001:8000"
+    environment:
+      APP_NAME: "Customer Service"
+      APP_ENV: local
+      APP_DEBUG: "true"
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/database/database.sqlite
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/up"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 15s
+
+  invoice-service:
+    build:
+      context: ./invoice-service
+    ports:
+      - "8002:8000"
+    environment:
+      APP_NAME: "Invoice Service"
+      APP_ENV: local
+      APP_DEBUG: "true"
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/database/database.sqlite
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/up"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 15s
+
+  hub:
+    build:
+      context: ./hub
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: Hub
+      APP_ENV: local
+      APP_DEBUG: "true"
+      SESSION_DRIVER: file
+      CACHE_STORE: array
+      CUSTOMER_SERVICE_URL: "http://customer-service:8000"
+      INVOICE_SERVICE_URL: "http://invoice-service:8000"
+    depends_on:
+      customer-service:
+        condition: service_healthy
+      invoice-service:
+        condition: service_healthy

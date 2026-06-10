@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'customer' => [
+        'url' => env('CUSTOMER_SERVICE_URL', 'http://localhost:8001'),
+    ],
+
+    'invoice' => [
+        'url' => env('INVOICE_SERVICE_URL', 'http://localhost:8002'),
+    ],
+
 ];
