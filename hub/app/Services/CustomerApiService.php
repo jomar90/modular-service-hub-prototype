@@ -17,7 +17,7 @@ class CustomerApiService
     public function paginate(int $page = 1, ?string $search = null): LengthAwarePaginator
     {
         $response = Http::get("{$this->baseUrl}/api/customers", [
-            'page'   => $page,
+            'page' => $page,
             'search' => $search,
         ]);
 

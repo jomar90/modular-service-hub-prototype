@@ -10,13 +10,13 @@ class InvoiceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'             => $this->id,
+            'id' => $this->id,
             'invoice_number' => $this->invoice_number,
-            'customer_id'    => $this->customer_id,
-            'amount'         => $this->amount,
-            'status'         => $this->status,
-            'due_date'       => $this->due_date->toDateString(),
-            'created_at'     => $this->created_at->toDateString(),
+            'customer_id' => $this->customer_id,
+            'amount' => $this->amount,
+            'status' => $this->status,
+            'due_date' => $this->due_date->toDateString(),
+            'created_at' => $this->created_at->toDateString(),
         ];
     }
 }

@@ -17,7 +17,7 @@ class CustomerController extends Controller
         if ($request->filled('ids')) {
             $ids = array_filter(
                 explode(',', $request->string('ids')),
-                fn($v) => is_numeric($v)
+                fn ($v) => is_numeric($v)
             );
             $query->whereIn('id', $ids);
         } elseif ($request->filled('search')) {

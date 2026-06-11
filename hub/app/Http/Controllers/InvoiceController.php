@@ -23,14 +23,14 @@ class InvoiceController extends Controller
 
         // Collect unique customer IDs from this page, then fetch them all in one HTTP call.
         $customerIds = $invoices->pluck('customer_id')->unique()->filter()->values()->all();
-        $customers   = $this->customers->findMany($customerIds);
+        $customers = $this->customers->findMany($customerIds);
 
         return view('invoices.index', compact('invoices', 'customers'));
     }
 
     public function show(int $id): View
     {
-        $invoice  = $this->invoices->find($id);
+        $invoice = $this->invoices->find($id);
 
         abort_if($invoice === null, 404);
 

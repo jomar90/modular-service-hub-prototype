@@ -17,7 +17,7 @@ class InvoiceApiService
     public function paginate(int $page = 1, ?string $status = null): LengthAwarePaginator
     {
         $response = Http::get("{$this->baseUrl}/api/invoices", [
-            'page'   => $page,
+            'page' => $page,
             'status' => $status,
         ]);
 
